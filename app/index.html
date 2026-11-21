@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA-style cover maker</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">NC</span>
+    <div>
+      <h1>Neon Coast Cover Studio</h1>
+      <p>Turn any photo into a Vice City poster cover. Offline — your photos never leave this machine.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="undoBtn" type="button" title="Undo (Ctrl+Z)">↩ Undo</button>
+    <button id="redoBtn" type="button" title="Redo (Ctrl+Y)">↪ Redo</button>
+    <button id="exportBtn" type="button" class="primary">⬇ Export PNG</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <aside class="panel" aria-label="Cover controls">
+    <section>
+      <h2>1 · Photo</h2>
+      <label class="file-label">Choose a photo from your machine
+        <input id="photoInput" type="file" accept="image/*">
+      </label>
+      <div class="samples" id="sampleRow" role="group" aria-label="Sample photos">
+        <button type="button" data-sample="pier" class="sample-btn"><img src="./samples/pier.jpg" alt="Pier at sunset"><span>Pier</span></button>
+        <button type="button" data-sample="boulevard" class="sample-btn"><img src="./samples/boulevard.jpg" alt="Boulevard"><span>Boulevard</span></button>
+        <button type="button" data-sample="neon" class="sample-btn"><img src="./samples/neon.jpg" alt="Neon street"><span>Neon St</span></button>
+        <button type="button" data-sample="palms" class="sample-btn"><img src="./samples/palms.jpg" alt="Palm beach"><span>Palms</span></button>
+      </div>
+      <label class="check"><input id="fillAll" type="checkbox" checked> Same photo in every panel</label>
+      <p class="hint">Drag a panel to move its photo. Scroll over a panel to zoom it.</p>
+    </section>
+
+    <section>
+      <h2>2 · Layout</h2>
+      <div class="choice-grid" id="layoutRow">
+        <button type="button" data-layout="grid4" class="choice">▦ Four-panel grid</button>
+        <button type="button" data-layout="hero3" class="choice">▧ Hero + three</button>
+        <button type="button" data-layout="bleed" class="choice">▣ Full bleed</button>
+        <button type="button" data-layout="tilt" class="choice">▨ Tilted snapshot</button>
+        <button type="button" data-layout="nine" class="choice">▩ Nine-panel grid</button>
+        <button type="button" data-layout="strip" class="choice">▤ Triptych strip</button>
+      </div>
+    </section>
+
+    <section>
+      <h2>3 · Colour grade</h2>
+      <div class="grade-row" id="gradeRow">
+        <button type="button" data-grade="vice" class="grade" style="--g1:#ff7a3d;--g2:#ff2e88;--g3:#3b1d8f">Vice Sunset</button>
+        <button type="button" data-grade="neon" class="grade" style="--g1:#ff2e88;--g2:#00e5ff;--g3:#12002e">Neon Pink</button>
+        <button type="button" data-grade="teal" class="grade" style="--g1:#00e5c7;--g2:#0a6cff;--g3:#04122e">Teal Night</button>
+        <button type="button" data-grade="gold" class="grade" style="--g1:#ffd166;--g2:#ff7a3d;--g3:#5b1a05">Gold Hour</button>
+        <button type="button" data-grade="noir" class="grade" style="--g1:#e8e8e8;--g2:#8a8a8a;--g3:#050505">Noir</button>
+      </div>
+      <label class="slider">Grain <input id="grainSlider" type="range" min="0" max="100" value="45"><span id="grainVal">45</span></label>
+      <label class="slider">Vignette <input id="vignetteSlider" type="range" min="0" max="100" value="55"><span id="vignetteVal">55</span></label>
+    </section>
+
+    <section>
+      <h2>4 · Lettering</h2>
+      <label>Title <input id="titleInput" type="text" maxlength="28" value="SUNSET HEIST"></label>
+      <label>Subtitle (script) <input id="subtitleInput" type="text" maxlength="40" value="one last ride down the coast"></label>
+      <label>Badge ribbon <input id="badgeInput" type="text" maxlength="18" value="VICE NIGHTS"></label>
+      <label>Heat meter
+        <select id="starsInput">
+          <option value="0">No stars</option>
+          <option value="1">★</option>
+          <option value="2">★★</option>
+          <option value="3" selected>★★★</option>
+          <option value="4">★★★★</option>
+          <option value="5">★★★★★</option>
+        </select>
+      </label>
+    </section>
+
+    <section>
+      <h2>5 · Export size</h2>
+      <div class="choice-grid" id="sizeRow">
+        <button type="button" data-size="1080x1080" class="choice">1080 × 1080 · Square</button>
+        <button type="button" data-size="1080x1350" class="choice">1080 × 1350 · Portrait</button>
+        <button type="button" data-size="1080x1920" class="choice">1080 × 1920 · Story</button>
+        <button type="button" data-size="1920x1080" class="choice">1920 × 1080 · Wide</button>
+      </div>
+      <p id="status" role="status" aria-live="polite"></p>
+    </section>
+  </aside>
+
+  <section class="stage" aria-label="Cover preview">
+    <div class="canvas-wrap">
+      <canvas id="stage" width="720" height="720"></canvas>
+      <p class="stage-caption">Preview — drag a panel to reposition its photo, scroll to zoom.</p>
+    </div>
+  </section>
+</main>
+
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

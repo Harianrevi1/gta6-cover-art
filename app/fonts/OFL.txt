@@ -1,0 +1,10 @@
+Fonts bundled with this app
+----------------------------
+Anton (Regular) — designed by Vernon Adams, distributed under the SIL Open
+Font License 1.1. File: anton-regular.woff2.
+Pacifico (Regular) — designed by Vernon Adams, distributed under the SIL Open
+Font License 1.1. File: pacifico-regular.woff2.
+
+Both fonts are free to ship with this app under the OFL; neither is a game
+font and neither comes from Rockstar Games. The full OFL 1.1 text is bundled
+with the fonts' source distributions from Google Fonts.
